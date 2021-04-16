@@ -40,7 +40,8 @@ def alert_received():
     print('Message from: ' + msg_from)
 
     # customize the behaviour of the bot here
-    message = "Hi, I am a Webex Teams bot. Have a great day ☀! "
+    message = "Hi **From: <@personEmail:" + \
+        msg_from + ">**, I am a Webex Teams bot. Have a great day ☀! "
 
     # uncomment if you are implementing a notifier bot
     '''
