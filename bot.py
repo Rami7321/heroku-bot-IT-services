@@ -36,6 +36,9 @@ def alert_received():
     raw_json = request.get_json()
     print(raw_json)
 
+    msg_from = raw_json['data']['personEmail']
+    print('Message from: ' + msg_from)
+
     # customize the behaviour of the bot here
     message = "Hi, I am a Webex Teams bot. Have a great day ☀! "
 
