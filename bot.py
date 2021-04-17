@@ -15,6 +15,7 @@ or implied.
 from flask import Flask, request, jsonify
 from webexteamssdk import WebexTeamsAPI
 import os
+import json
 
 # get environment variables
 WT_BOT_TOKEN = os.environ['WT_BOT_TOKEN']
@@ -40,24 +41,34 @@ def alert_received():
     print('Message from: ' + msg_from)
 
     # customize the behaviour of the bot here
-    message = "Hi **From: <@personEmail:" + \
-        msg_from + ">**, I am a Webex Teams bot. Have a great day ☀! "
-
-    # uncomment if you are implementing a notifier bot
-    '''
-    api.messages.create(roomId=WT_ROOM_ID, markdown=message)
-    '''
-
-
-    # uncomment if you are implementing a controller bot
-    # '''
+    message = "Hi, I am a Webex Teams bot. Have a great day ☀! "
+    
     WT_ROOM_ID = raw_json['data']['roomId']
     personEmail_json = raw_json['data']['personEmail']
     if personEmail_json != WT_BOT_EMAIL:
         api.messages.create(roomId=WT_ROOM_ID, markdown=message)
-    # '''
+        api.messages.create(
+            roomId=WT_ROOM_ID,
+            text="Card Message: If you see this your client cannot render cards",
+            attachments=[{
+                "contentType": "application/vnd.microsoft.card.adaptive",
+                "content": get_json_card("card.json")
+            }],
+        )
+
 
     return jsonify({'success': True})
+
+# Getting adaptive card
+def get_json_card(filepath):
+    """
+    Get content of JSON card
+    """
+    with open(filepath, 'r') as f:
+        json_card = json.loads(f.read())
+        f.close()
+    return json_card
+
 
 if __name__=="__main__":
     app.run()
