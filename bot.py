@@ -17,21 +17,16 @@ from webexteamssdk import WebexTeamsAPI
 import os
 import json
 
-# get environment variables
+# Get environment variables
 WT_BOT_TOKEN = os.environ['WT_BOT_TOKEN']
-
-# uncomment next line if you are implementing a notifier bot
-#WT_ROOM_ID = os.environ['WT_ROOM_ID']
-
-# uncomment next line if you are implementing a controller bot
 WT_BOT_EMAIL = os.environ['WT_BOT_EMAIL']
 
-# start Flask and WT connection
+# Start Flask and WT connection
 app = Flask(__name__)
 api = WebexTeamsAPI(access_token=WT_BOT_TOKEN)
 
 
-# defining the decorater and route registration for incoming alerts
+# Defining the decorater and route registration for incoming alerts
 @app.route('/', methods=['POST'])
 def alert_received():
     raw_json = request.get_json()
@@ -40,9 +35,10 @@ def alert_received():
     msg_from = raw_json['data']['personEmail']
     print('Message from: ' + msg_from)
 
-    # customize the behaviour of the bot here
-    message = "Hi, I am a Webex Teams bot. Have a great day ☀! "
+    # Customize the behaviour of the bot here
+    message = "Hi, I a Webex bot and I'm here to assist you with IT services.. 💻⚠ "
     
+    # Replying to the same room that triggered the webhook
     WT_ROOM_ID = raw_json['data']['roomId']
     personEmail_json = raw_json['data']['personEmail']
     if personEmail_json != WT_BOT_EMAIL:
@@ -59,7 +55,7 @@ def alert_received():
 
     return jsonify({'success': True})
 
-# Getting adaptive card
+# Getting adaptive card data from the local file: card.json
 def get_json_card(filepath):
     """
     Get content of JSON card

@@ -25,11 +25,10 @@
                             "items": [
                                 {
                                     "type": "TextBlock",
-                                    "text": "Update for Employee",
+                                    "text": "IT Services",
                                     "color": "Light",
                                     "size": "ExtraLarge",
-                                    "spacing": "Padding",
-                                    "horizontalAlignment": "Left"
+                                    "spacing": "Padding"
                                 }
                             ]
                         }
@@ -41,40 +40,6 @@
             "spacing": "Medium",
             "horizontalAlignment": "Left",
             "style": "emphasis"
-        },
-        {
-            "type": "Container",
-            "style": "attention",
-            "items": [
-                {
-                    "type": "TextBlock",
-                    "text": "PLEASE READ: Please make sure to update you device",
-                    "wrap": true,
-                    "horizontalAlignment": "Center",
-                    "weight": "Bolder",
-                    "size": "Medium",
-                    "color": "Warning"
-                }
-            ],
-            "horizontalAlignment": "Center",
-            "spacing": "Small"
-        },
-        {
-            "type": "Container",
-            "items": [
-                {
-                    "type": "TextBlock",
-                    "text": "By acknowledging the read we will update your record.",
-                    "wrap": true,
-                    "horizontalAlignment": "Center",
-                    "size": "Medium",
-                    "color": "Good",
-                    "weight": "Bolder"
-                }
-            ],
-            "style": "good",
-            "horizontalAlignment": "Left",
-            "spacing": "None"
         },
         {
             "type": "Container",
@@ -90,7 +55,7 @@
                         },
                         {
                             "type": "TextRun",
-                            "text": "Please submit your response from the options below.",
+                            "text": "Please submit your response from the options below..",
                             "color": "Accent",
                             "weight": "Bolder"
                         }
@@ -107,20 +72,16 @@
                     "type": "Container",
                     "items": [
                         {
-                            "type": "TextBlock",
-                            "text": "Accept or Decline"
-                        },
-                        {
                             "type": "Input.ChoiceSet",
                             "placeholder": "Please choose...",
                             "choices": [
                                 {
-                                    "title": "Accept",
-                                    "value": "accept"
+                                    "title": "Report an Issue",
+                                    "value": "issue"
                                 },
                                 {
-                                    "title": "Decline",
-                                    "value": "decline"
+                                    "title": "New Request",
+                                    "value": "request"
                                 }
                             ],
                             "id": "selection"
