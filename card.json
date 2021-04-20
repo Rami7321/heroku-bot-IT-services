@@ -76,11 +76,11 @@
                             "placeholder": "Please choose...",
                             "choices": [
                                 {
-                                    "title": "Report an Issue",
+                                    "title": "Report an issue",
                                     "value": "issue"
                                 },
                                 {
-                                    "title": "New Request",
+                                    "title": "Submit a new request",
                                     "value": "request"
                                 }
                             ],

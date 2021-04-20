@@ -28,7 +28,7 @@ api = WebexTeamsAPI(access_token=WT_BOT_TOKEN)
 
 # Defining the decorater and route registration for incoming alerts
 @app.route('/', methods=['POST'])
-def alert_received():
+def initial_message_received():
     raw_json = request.get_json()
     print(raw_json)
 
@@ -53,6 +53,26 @@ def alert_received():
         )
 
 
+    return jsonify({'success': True})
+
+# Defining the decorater and route registration for incoming alerts
+@app.route('/attachment_action', methods=['POST'])
+def attachment_action_recived():
+    raw_json = request.get_json()
+    print(raw_json)
+
+    msg_from = raw_json['data']['personEmail']
+    print('Message from: ' + msg_from)
+
+    # Customize the behaviour of the attachment action here
+    message = "Your response has been recieved"
+
+    # Replying to the same room that triggered the webhook
+    WT_ROOM_ID = raw_json['data']['roomId']
+    personEmail_json = raw_json['data']['personEmail']
+    if personEmail_json != WT_BOT_EMAIL:
+        api.messages.create(roomId=WT_ROOM_ID, markdown=message)
+    
     return jsonify({'success': True})
 
 # Getting adaptive card data from the local file: card.json
