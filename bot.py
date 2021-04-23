@@ -58,12 +58,19 @@ def attachment_action_recived():
     print(raw_json)
 
     # Customize the behaviour of the attachment action here
+    
+    # Getting Room and Msg information
     w_room_id = raw_json['data']['roomId']
     w_msg_id = raw_json['data']['messageId']
     
+    # Getting the attachment_action on the card
     attach_action = api.attachment_actions.get(raw_json['data']['id'])
     selection = attach_action.inputs['selection']
+
+    # Handling the selection that was chosen
     message = "Your response: '" + selection + "' has been recieved"
+
+    # Action from the bot to the user 
     api.messages.create(roomId=w_room_id, parent=w_msg_id, markdown=message)
     api.messages.delete(w_msg_id)
 
