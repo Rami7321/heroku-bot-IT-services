@@ -61,17 +61,18 @@ def attachment_action_recived():
     raw_json = request.get_json()
     print(raw_json)
 
-    # Customize the behaviour of the attachment action here
-    message = "Your response has been recieved"
-
     # Replying to the same room that triggered the webhook
     WT_ROOM_ID = raw_json['data']['roomId']
     WT_MSG_ID = raw_json['data']['messageId']
     
-    api.messages.create(roomId=WT_ROOM_ID, parent=WT_MSG_ID, markdown=message)
+    # Customize the behaviour of the attachment action here
 
-    attachment_action = api.attachment_actions.get(raw_json['data']['id'])
-    print('Selection: ' + attachment_action['inputs']['selection'])
+    action = api.attachment_actions.get(raw_json['data']['id'])
+    selection = action['inputs']['selection']
+    print('Selection: ' + selection)
+
+    message = "Your response: '" + selection + "' has been recieved"
+    api.messages.create(roomId=WT_ROOM_ID, parent=WT_MSG_ID, markdown=message)
 
     return jsonify({'success': True})
 
