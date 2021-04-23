@@ -69,7 +69,8 @@ def attachment_action_recived():
 
     action = api.attachment_actions.get(raw_json['data']['id'])
     print('#'*40 + 'ACTION:\n' + str(action))
-    selection = action.inputs.selection
+    # selection = action.inputs.selection
+    selection = action.type
     print('Selection: ' + selection)
 
     message = "Your response: has been recieved"
