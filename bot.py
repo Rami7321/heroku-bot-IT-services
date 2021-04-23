@@ -32,26 +32,22 @@ def initial_message_received():
     raw_json = request.get_json()
     print(raw_json)
 
+    w_room_id = raw_json['data']['roomId']
     msg_from = raw_json['data']['personEmail']
     print('Message from: ' + msg_from)
 
-    # Customize the behaviour of the bot here
+    # Customize the behaviour of the bot here    
     message = "Hi, I a Webex bot and I'm here to assist you with IT services.. 💻⚠ "
-    
-    # Replying to the same room that triggered the webhook
-    WT_ROOM_ID = raw_json['data']['roomId']
-    personEmail_json = raw_json['data']['personEmail']
-    if personEmail_json != WT_BOT_EMAIL:
-        api.messages.create(roomId=WT_ROOM_ID, markdown=message)
+    if msg_from != WT_BOT_EMAIL:
+        api.messages.create(roomId=w_room_id, markdown=message)
         api.messages.create(
-            roomId=WT_ROOM_ID,
+            roomId=w_room_id,
             text="Card Message: If you see this your client cannot render cards",
             attachments=[{
                 "contentType": "application/vnd.microsoft.card.adaptive",
                 "content": get_json_card("card.json")
             }],
         )
-
 
     return jsonify({'success': True})
 
@@ -61,21 +57,14 @@ def attachment_action_recived():
     raw_json = request.get_json()
     print(raw_json)
 
-    # Replying to the same room that triggered the webhook
-    WT_ROOM_ID = raw_json['data']['roomId']
-    WT_MSG_ID = raw_json['data']['messageId']
+    w_room_id = raw_json['data']['roomId']
+    w_msg_id = raw_json['data']['messageId']
     
     # Customize the behaviour of the attachment action here
-
-    action = api.attachment_actions.get(raw_json['data']['id'])
-    print('#'*40 + 'ACTION:\n' + str(action))
-    # selection = action.inputs.selection
-    inputs_data = action.inputs
-    print('Selection: ' + str(inputs_data['selection']))
-
-    message = "Your response: has been recieved"
-    # message = "Your response: '" + selection + "' has been recieved"
-    api.messages.create(roomId=WT_ROOM_ID, parent=WT_MSG_ID, markdown=message)
+    attach_action = api.attachment_actions.get(raw_json['data']['id'])
+    selection = attach_action.inputs['selection']
+    message = "Your response: '" + selection + "' has been recieved"
+    api.messages.create(roomId=w_room_id, parent=w_msg_id, markdown=message)
 
     return jsonify({'success': True})
 
