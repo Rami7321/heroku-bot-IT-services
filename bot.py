@@ -68,6 +68,7 @@ def attachment_action_recived():
     # Customize the behaviour of the attachment action here
 
     action = api.attachment_actions.get(raw_json['data']['id'])
+    action = json.loads(action)
     selection = action['inputs']['selection']
     print('Selection: ' + selection)
 
