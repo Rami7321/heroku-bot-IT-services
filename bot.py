@@ -70,6 +70,9 @@ def attachment_action_recived():
     
     api.messages.create(roomId=WT_ROOM_ID, parent=WT_MSG_ID, markdown=message)
 
+    attachment_action = api.attachment_actions.get(raw_json['data']['id'])
+    print('Selection: ' + attachment_action['inputs']['selection'])
+
     return jsonify({'success': True})
 
 # Getting adaptive card data from the local file: card.json

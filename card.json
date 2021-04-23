@@ -9,7 +9,6 @@
                     "items": [
                         {
                             "type": "Image",
-                            "style": "Person",
                             "url": "https://cdn4.iconfinder.com/data/icons/computer-technology-6/64/Error-computer-notice-warning-512.png",
                             "size": "Medium",
                             "height": "50px"
@@ -85,27 +84,6 @@
                                 }
                             ],
                             "id": "selection"
-                        },
-                        {
-                            "type": "Container",
-                            "items": [
-                                {
-                                    "type": "Container",
-                                    "items": [
-                                        {
-                                            "type": "TextBlock",
-                                            "text": "Comments",
-                                            "color": "Light"
-                                        },
-                                        {
-                                            "type": "Input.Text",
-                                            "placeholder": "Comments...",
-                                            "id": "comment"
-                                        }
-                                    ],
-                                    "style": "emphasis"
-                                }
-                            ]
                         }
                     ],
                     "horizontalAlignment": "Left",
