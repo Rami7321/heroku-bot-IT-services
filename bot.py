@@ -32,13 +32,13 @@ def initial_message_received():
     raw_json = request.get_json()
     print(raw_json)
 
+    # Customize the behaviour of the bot here    
     w_room_id = raw_json['data']['roomId']
     msg_from = raw_json['data']['personEmail']
     print('Message from: ' + msg_from)
 
-    # Customize the behaviour of the bot here    
-    message = "Hi, I a Webex bot and I'm here to assist you with IT services.. 💻⚠ "
     if msg_from != WT_BOT_EMAIL:
+        message = "Hi, I a Webex bot and I'm here to assist you with IT services.. 💻⚠ "
         api.messages.create(roomId=w_room_id, markdown=message)
         api.messages.create(
             roomId=w_room_id,
@@ -57,14 +57,15 @@ def attachment_action_recived():
     raw_json = request.get_json()
     print(raw_json)
 
+    # Customize the behaviour of the attachment action here
     w_room_id = raw_json['data']['roomId']
     w_msg_id = raw_json['data']['messageId']
     
-    # Customize the behaviour of the attachment action here
     attach_action = api.attachment_actions.get(raw_json['data']['id'])
     selection = attach_action.inputs['selection']
     message = "Your response: '" + selection + "' has been recieved"
     api.messages.create(roomId=w_room_id, parent=w_msg_id, markdown=message)
+    api.messages.delete(w_msg_id)
 
     return jsonify({'success': True})
 
