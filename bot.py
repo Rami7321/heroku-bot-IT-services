@@ -68,11 +68,12 @@ def attachment_action_recived():
     # Customize the behaviour of the attachment action here
 
     action = api.attachment_actions.get(raw_json['data']['id'])
-    action = json.loads(action)
-    selection = action['inputs']['selection']
-    print('Selection: ' + selection)
+    Print('#'*40 + 'ACTION:\n' + str(action))
+    # selection = action['inputs']['selection']
+    # print('Selection: ' + selection)
 
-    message = "Your response: '" + selection + "' has been recieved"
+    message = "Your response: has been recieved"
+    # message = "Your response: '" + selection + "' has been recieved"
     api.messages.create(roomId=WT_ROOM_ID, parent=WT_MSG_ID, markdown=message)
 
     return jsonify({'success': True})
