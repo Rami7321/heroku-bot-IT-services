@@ -72,6 +72,7 @@
                     "items": [
                         {
                             "type": "Input.ChoiceSet",
+                            "id": "selection",
                             "placeholder": "Please choose...",
                             "choices": [
                                 {
@@ -82,12 +83,9 @@
                                     "title": "Submit a new request",
                                     "value": "request"
                                 }
-                            ],
-                            "id": "selection"
+                            ]
                         }
-                    ],
-                    "horizontalAlignment": "Left",
-                    "style": "default"
+                    ]
                 }
             ]
         },
