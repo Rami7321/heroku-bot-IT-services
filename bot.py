@@ -71,7 +71,7 @@ def attachment_action_recived():
     print('#'*40 + 'ACTION:\n' + str(action))
     # selection = action.inputs.selection
     selection = action.inputs
-    print('Selection: ' + selection)
+    print('Selection: ' + str(selection))
 
     message = "Your response: has been recieved"
     # message = "Your response: '" + selection + "' has been recieved"
