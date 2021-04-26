@@ -59,7 +59,7 @@
                     "items": [
                         {
                             "type": "Input.ChoiceSet",
-                            "id": "selection",
+                            "id": "action",
                             "placeholder": "Please choose...",
                             "choices": [
                                 {

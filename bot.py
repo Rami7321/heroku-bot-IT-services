@@ -60,6 +60,9 @@ def attachment_action_recived():
     attach_action = api.attachment_actions.get(raw_json['data']['id'])
     action = attach_action.inputs['action']
 
+    # Deleting the original message since a response has been recieved
+    api.messages.delete(w_msg_id)
+
     # Handling cards' action buttons
 
     # Initial Card
@@ -67,14 +70,10 @@ def attachment_action_recived():
     if action == 'request':
         send_card(w_room_id,'request.json')
     elif action == 'issue':
-        message = "Your response: '" + action + "' has been recieved"
+        send_card(w_room_id,'issue.json')
     # Request card: 
     else:
-        message = "Your response was not recognized. Please try again.."
-
-    # Action from the bot to the user 
-    api.messages.create(roomId=w_room_id, parent=w_msg_id, markdown=message)
-    api.messages.delete(w_msg_id)
+        message = "Your response: '" + action + "' was not recognized. Please try again.."    
 
     return jsonify({'success': True})
 
