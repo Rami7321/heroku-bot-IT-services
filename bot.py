@@ -45,7 +45,7 @@ def initial_message_received():
             text="Card Message: If you see this your client cannot render cards",
             attachments=[{
                 "contentType": "application/vnd.microsoft.card.adaptive",
-                "content": get_json_card("card.json")
+                "content": get_json_card("init_card.json")
             }],
         )
 
@@ -65,16 +65,17 @@ def attachment_action_recived():
     
     # Getting the attachment_action on the card
     attach_action = api.attachment_actions.get(raw_json['data']['id'])
-    selection = attach_action.inputs['selection']
+    # selection = attach_action.inputs['selection']
+    action = attach_action.inputs['action']
 
     # Handling cards' submit button
 
     # Initial Card
-    # Options: 1.Report an issue OR 2.Submit a new request
-    if selection == 'issue':
-        message = "Your response: '" + selection + "' has been recieved"
-    elif selection == 'request':
-        message = "Your response: '" + selection + "' has been recieved"
+    # Options: 1.Submit a new request OR 2.Report an issue
+    if action == 'request':
+        message = "Your response: '" + action + "' has been recieved"
+    elif action == 'issue':
+        message = "Your response: '" + action + "' has been recieved"
     # Request card: 
     else:
         message = "Your response was not recognized. Please try again.."
