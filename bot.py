@@ -65,7 +65,7 @@ def attachment_action_recived():
     # Initial Card
     # Options: 1.Submit a new request OR 2.Report an issue
     if action == 'request':
-        message = "Your response: '" + action + "' has been recieved"
+        send_card(w_room_id,'request.json')
     elif action == 'issue':
         message = "Your response: '" + action + "' has been recieved"
     # Request card: 
