@@ -65,20 +65,30 @@ def attachment_action_recived():
 
     # Handling cards' action buttons
 
-    # Initial Card responses:
+    # 00-Initial Card responses:
     if action == 'request':
-        send_card(w_room_id, 'request.json')
+        send_card(w_room_id, '01_request.json')
     elif action == 'issue':
-        send_card(w_room_id, 'issue.json')   # TODO
-    # Request Card responses: 
+        send_card(w_room_id, '01_issue.json')   # TODO
+    # 01-Request Card responses: 
     elif action == 'request-software':
-        send_card(w_room_id, 'request-software.json') # TODO
+        send_card(w_room_id, '02_request-software.json') # TODO
     elif action == 'request-hardware':
-        send_card(w_room_id, 'request-hardware.json') # TODO
+        send_card(w_room_id, '02_request-hardware.json')  # TODO
     elif action == 'request-access':
-        send_card(w_room_id,'request-access') # TODO
+        send_card(w_room_id, '02_request-access.json')  # TODO
     elif action == 'request-accessories':
-        send_card(w_room_id, 'request-accessories.json')  # TODO
+        send_card(w_room_id, '02_request-accessories.json')  # TODO
+    # 02-Issue Card responses:
+    elif action == 'issue-computer':
+        send_card(w_room_id, '02_issue-computer.json')  # TODO
+    elif action == 'issue-oracle':
+        send_card(w_room_id, '02_issue-oracle.json')  # TODO
+    elif action == 'issue-network':
+        send_card(w_room_id, '02_issue-network.json')  # TODO
+    elif action == 'issue-portal':
+        send_card(w_room_id, '02_issue-portal.json')  # TODO
+    # Responding to unhandled responses:
     else:
         message = "Your response: '" + action + "' was not recognized. Please try again.."
         api.messages.create(roomId=w_room_id, markdown=message)
