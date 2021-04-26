@@ -67,8 +67,17 @@ def attachment_action_recived():
     attach_action = api.attachment_actions.get(raw_json['data']['id'])
     selection = attach_action.inputs['selection']
 
-    # Handling the selection that was chosen
-    message = "Your response: '" + selection + "' has been recieved"
+    # Handling cards' submit button
+
+    # Initial Card
+    # Options: 1.Report an issue OR 2.Submit a new request
+    if selection == 'issue':
+        message = "Your response: '" + selection + "' has been recieved"
+    elif selection == 'request':
+        message = "Your response: '" + selection + "' has been recieved"
+    # Request card: 
+    else:
+        message = "Your response was not recognized. Please try again.."
 
     # Action from the bot to the user 
     api.messages.create(roomId=w_room_id, parent=w_msg_id, markdown=message)
@@ -76,7 +85,7 @@ def attachment_action_recived():
 
     return jsonify({'success': True})
 
-# Getting adaptive card data from the local file: card.json
+# Getting adaptive card data from the local file
 def get_json_card(filepath):
     """
     Get content of JSON card
