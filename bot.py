@@ -73,7 +73,9 @@ def attachment_action_recived():
         send_card(w_room_id,'issue.json')
     # Request card: 
     else:
-        message = "Your response: '" + action + "' was not recognized. Please try again.."    
+        message = "Your response: '" + action + "' was not recognized. Please try again.."
+        api.messages.create(roomId=w_room_id, markdown=message)
+
 
     return jsonify({'success': True})
 
