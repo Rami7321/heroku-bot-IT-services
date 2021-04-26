@@ -68,7 +68,7 @@ def attachment_action_recived():
     # selection = attach_action.inputs['selection']
     action = attach_action.inputs['action']
 
-    # Handling cards' submit button
+    # Handling cards' action buttons
 
     # Initial Card
     # Options: 1.Submit a new request OR 2.Report an issue

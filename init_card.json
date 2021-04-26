@@ -72,6 +72,7 @@
                         {
                             "type": "Action.Submit",
                             "title": "Submit a new request",
+                            "style": "positive",
                             "data": {
                                 "action": "request"
                             }
@@ -79,6 +80,7 @@
                         {
                             "type": "Action.Submit",
                             "title": "Report an issue",
+                            "style": "destructive",
                             "data": {
                                 "action": "issue"
                             }
