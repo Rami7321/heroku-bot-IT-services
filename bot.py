@@ -40,7 +40,7 @@ def initial_message_received():
     if msg_from != WT_BOT_EMAIL:
         message = "Hi, I'm a Webex bot! I'm here to assist you with IT services.. 💻⚠ "
         api.messages.create(roomId=w_room_id, markdown=message)
-        send_card(w_room_id,'init_card.json')
+        send_card(w_room_id,'00_init_card.json')
 
     return jsonify({'success': True})
 
@@ -65,13 +65,20 @@ def attachment_action_recived():
 
     # Handling cards' action buttons
 
-    # Initial Card
-    # Options: 1.Submit a new request OR 2.Report an issue
+    # Initial Card responses:
     if action == 'request':
-        send_card(w_room_id,'request.json')
+        send_card(w_room_id, 'request.json')
     elif action == 'issue':
-        send_card(w_room_id,'issue.json')
-    # Request card: 
+        send_card(w_room_id, 'issue.json')   # TODO
+    # Request Card responses: 
+    elif action == 'request-software':
+        send_card(w_room_id, 'request-software.json') # TODO
+    elif action == 'request-hardware':
+        send_card(w_room_id, 'request-hardware.json') # TODO
+    elif action == 'request-access':
+        send_card(w_room_id,'request-access') # TODO
+    elif action == 'request-accessories':
+        send_card(w_room_id, 'request-accessories.json')  # TODO
     else:
         message = "Your response: '" + action + "' was not recognized. Please try again.."
         api.messages.create(roomId=w_room_id, markdown=message)
@@ -84,7 +91,7 @@ def get_json_card(filepath):
     """
     Get content of JSON card
     """
-    with open(filepath, 'r') as f:
+    with open('cards/'+filepath, 'r') as f:
         json_card = json.loads(f.read())
         f.close()
     return json_card
