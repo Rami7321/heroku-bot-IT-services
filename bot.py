@@ -38,16 +38,9 @@ def initial_message_received():
     print('Message from: ' + msg_from)
 
     if msg_from != WT_BOT_EMAIL:
-        message = "Hi, I a Webex bot and I'm here to assist you with IT services.. 💻⚠ "
+        message = "Hi, I'm a Webex bot! I'm here to assist you with IT services.. 💻⚠ "
         api.messages.create(roomId=w_room_id, markdown=message)
-        api.messages.create(
-            roomId=w_room_id,
-            text="Card Message: If you see this your client cannot render cards",
-            attachments=[{
-                "contentType": "application/vnd.microsoft.card.adaptive",
-                "content": get_json_card("init_card.json")
-            }],
-        )
+        send_card(w_room_id,'init_card.json')
 
     return jsonify({'success': True})
 
@@ -65,7 +58,6 @@ def attachment_action_recived():
     
     # Getting the attachment_action on the card
     attach_action = api.attachment_actions.get(raw_json['data']['id'])
-    # selection = attach_action.inputs['selection']
     action = attach_action.inputs['action']
 
     # Handling cards' action buttons
@@ -96,6 +88,16 @@ def get_json_card(filepath):
         f.close()
     return json_card
 
+# Sending an Adaptive card message to Webex room
+def send_card(room_id,card_file):
+    api.messages.create(
+        roomId=room_id,
+        text="Card Message: If you see this your client cannot render cards",
+        attachments=[{
+            "contentType": "application/vnd.microsoft.card.adaptive",
+            "content": get_json_card(card_file)
+        }],
+    )
 
 if __name__=="__main__":
     app.run()
