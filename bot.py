@@ -81,6 +81,34 @@ def attachment_action_recived():
     elif action == 'request-accessories':
         send_card(w_room_id, '02_request-accessories.json')  # TODO
     
+    # 02- Request Software handling:
+    elif 'request-software-' in action:
+        software = action.replace('request-software-', '')
+        message = "Your request for *software*: **" + software + "** has been recieved."
+        api.messages.create(roomId=w_room_id, markdown=message)
+        send_card(w_room_id, '03_provide_information.json')  # TODO
+
+    # 02- Request Hardware handling:
+    elif 'request-hardware-' in action:
+        hardware = action.replace('request-hardware-', '')
+        message = "Your request for *hardware*: **" + hardware + "** has been recieved."
+        api.messages.create(roomId=w_room_id, markdown=message)
+        send_card(w_room_id, '03_provide_information.json')  # TODO
+
+    # 02- Request Access handling:
+    elif 'request-access-' in action:
+        access_type = action.replace('request-access-', '')
+        message = "Your request for *access*: **" + access_type + "** has been recieved."
+        api.messages.create(roomId=w_room_id, markdown=message)
+        send_card(w_room_id, '03_provide_information.json')  # TODO
+
+    # 02- Request Accessories handling:
+    elif 'request-accessories-' in action:
+        accessory = action.replace('request-accessories-', '')
+        message = "Your request for *accessory*: **" + accessory + "** has been recieved."
+        api.messages.create(roomId=w_room_id, markdown=message)
+        send_card(w_room_id, '03_provide_information.json')  # TODO
+
     # 01-Issue Card responses:
     elif action == 'issue-computer':
         send_card(w_room_id, '02_issue-computer.json')  # TODO
@@ -91,34 +119,7 @@ def attachment_action_recived():
     elif action == 'issue-portal':
         send_card(w_room_id, '02_issue-portal.json')  # TODO
     
-    # 02- Request Software handling:
-    elif 'request-software-' in action:
-        software = action.replace('request-software-','')
-        message = "Your request for software: **" + software + "** has been recieved."
-        api.messages.create(roomId=w_room_id, markdown=message)
-        send_card(w_room_id, '03_provide_information.json')  # TODO
     
-    # 02- Request Hardware handling:
-    elif 'request-hardware-' in action:
-        hardware = action.replace('request-hardware-', '')
-        message = "Your request for hardware: **" + hardware + "** has been recieved."
-        api.messages.create(roomId=w_room_id, markdown=message)
-        send_card(w_room_id, '03_provide_information.json')  # TODO
-    
-    # 02- Request Access handling:
-    elif 'request-access-' in action:
-        access_type = action.replace('request-access-', '')
-        message = "Your request for access: **" + access_type + "** has been recieved."
-        api.messages.create(roomId=w_room_id, markdown=message)
-        send_card(w_room_id, '03_provide_information.json')  # TODO
-
-    # 02- Request Accessories handling:
-    elif 'request-accessories-' in action:
-        accessory = action.replace('request-accessories-', '')
-        message = "Your request for accessory: **" + accessory + "** has been recieved."
-        api.messages.create(roomId=w_room_id, markdown=message)
-        send_card(w_room_id, '03_provide_information.json')  # TODO
-
     # Responding to unhandled responses:
     else:
         message = "Your response: '" + action + "' was not recognized. Please try again.."
