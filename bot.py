@@ -52,7 +52,7 @@ def initial_message_received():
         # Generating card
         buttons_list = ['request-software','request-hardware','request-access']
         g_card = generate_card(buttons_list)
-        api.messages.create(roomId=w_room_id, attachments=[make_attachment(g_card)])
+        api.messages.create(text="Issue sending message", roomId=w_room_id, attachments=[{"contentType": "application/vnd.microsoft.card.adaptive","content":g_card}])
 
     return jsonify({'success': True})
 
