@@ -48,6 +48,12 @@ def initial_message_received():
         api.messages.create(roomId=w_room_id, markdown=message)
         send_card(w_room_id,'00_init_card.json')
 
+        # TESTING Generating a card dynamically
+        # Generating card
+        buttons_list = ['request-software','request-hardware','request-access']
+        g_card = generate_card(buttons_list)
+        api.messages.create(text="Issue sending message", toPersonEmail=w_room_id, attachments=[make_attachment(g_card)])
+
     return jsonify({'success': True})
 
 # Getting an attachment action, triggering the webhook for: attachmentActions:created
@@ -68,11 +74,6 @@ def attachment_action_recived():
 
     # Deleting the original message since a response has been recieved
     api.messages.delete(w_msg_id)
-
-    # Generating card
-    buttons_list = ['request-software','request-hardware','request-access']
-    g_card = generate_card(buttons_list)
-    api.messages.create(text="Issue sending message", toPersonEmail=w_room_id, attachments=[make_attachment(g_card)])
 
     # Handling cards' action buttons
 
@@ -130,7 +131,7 @@ def send_card(room_id,card_file):
 
 # Generating an Adaptive card with a list of buttons
 def generate_card(list_of_buttons):
-    c_image = Image(url="https://cdn4.iconfinder.com/data/icons/computer-technology-6/64/Error-computer-notice-warning-512.png", size="Medium", height="50px")
+    c_image = Image(url="https://cdn4.iconfinder.com/data/icons/computer-technology-6/64/Error-computer-notice-warning-512.png", size="medium", height="50px")
     c_text_block = TextBlock("IT Services", color="Light",size="ExtraLarge")
     col_1 = list()
     col_1.append(c_image)
