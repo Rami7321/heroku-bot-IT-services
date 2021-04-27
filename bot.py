@@ -93,7 +93,13 @@ def attachment_action_recived():
         software = action.replace('request-software-','')
         message = "Your request for software: **" + software + "** has been recieved."
         api.messages.create(roomId=w_room_id, markdown=message)
-        # send_card(w_room_id, '02_request-software.json')  # TODO
+        send_card(w_room_id, '03_provide_information.json')  # TODO
+    # 02- Request Hardware handling:
+    elif 'request-hardware-' in action:
+        hardware = action.replace('request-hardware-', '')
+        message = "Your request for hardware: **" + hardware + "** has been recieved."
+        api.messages.create(roomId=w_room_id, markdown=message)
+        send_card(w_room_id, '03_provide_information.json')  # TODO
     # Responding to unhandled responses:
     else:
         message = "Your response: '" + action + "' was not recognized. Please try again.."
