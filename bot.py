@@ -131,7 +131,7 @@ def send_card(room_id,card_file):
 
 # Generating an Adaptive card with a list of buttons
 def generate_card(list_of_buttons):
-    c_image = Image(url="https://cdn4.iconfinder.com/data/icons/computer-technology-6/64/Error-computer-notice-warning-512.png", size="MEDIUM", height="50px")
+    c_image = Image(url="https://cdn4.iconfinder.com/data/icons/computer-technology-6/64/Error-computer-notice-warning-512.png", height="50px")
     c_text_block = TextBlock("IT Services", color="Light",size="ExtraLarge")
     col_1 = list()
     col_1.append(c_image)
