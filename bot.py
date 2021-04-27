@@ -53,7 +53,7 @@ def initial_message_received():
         buttons_list = ['request-software','request-hardware','request-access']
         g_card = generate_card(buttons_list)
         print("Card: " + str(g_card))
-        print("Card in JSON: " + str(g_card.to_json))
+        print("Card in JSON: " + str(g_card.to_json()))
         api.messages.create(text="Issue sending message", roomId=w_room_id, attachments=[make_attachment(g_card)])
 
     return jsonify({'success': True})
