@@ -40,7 +40,7 @@ def initial_message_received():
     if msg_from != WT_BOT_EMAIL:
         message = "Hi, I'm a Webex bot! I'm here to assist you with IT services.. 💻⚠ "
         api.messages.create(roomId=w_room_id, markdown=message)
-        send_card(w_room_id,'00_init_card.json')
+        send_card(w_room_id,'000_init_card.json')
 
     return jsonify({'success': True})
 
@@ -67,19 +67,19 @@ def attachment_action_recived():
 
     # 00-Initial Card responses:
     if action == 'request':
-        send_card(w_room_id, '01_request.json')
+        send_card(w_room_id, '011_request.json')
     elif action == 'issue':
-        send_card(w_room_id, '01_issue.json')   # TODO
+        send_card(w_room_id, '021_issue.json')   # TODO
     
     # 01-Request Card responses: 
     elif action == 'request-software':
-        send_card(w_room_id, '02_request-software.json')
+        send_card(w_room_id, '012_request-software.json')
     elif action == 'request-hardware':
-        send_card(w_room_id, '02_request-hardware.json')  # TODO
+        send_card(w_room_id, '012_request-hardware.json')
     elif action == 'request-access':
-        send_card(w_room_id, '02_request-access.json')  # TODO
+        send_card(w_room_id, '012_request-access.json')
     elif action == 'request-accessories':
-        send_card(w_room_id, '02_request-accessories.json')  # TODO
+        send_card(w_room_id, '012_request-accessories.json')
     
     # 02- Request Software handling:
     elif 'request-software-' in action:
@@ -111,13 +111,13 @@ def attachment_action_recived():
 
     # 01-Issue Card responses:
     elif action == 'issue-computer':
-        send_card(w_room_id, '02_issue-computer.json')  # TODO
+        send_card(w_room_id, '022_issue-computer.json')  # TODO
     elif action == 'issue-oracle':
-        send_card(w_room_id, '02_issue-oracle.json')  # TODO
+        send_card(w_room_id, '022_issue-oracle.json')  # TODO
     elif action == 'issue-network':
-        send_card(w_room_id, '02_issue-network.json')  # TODO
+        send_card(w_room_id, '022_issue-network.json')  # TODO
     elif action == 'issue-portal':
-        send_card(w_room_id, '02_issue-portal.json')  # TODO
+        send_card(w_room_id, '022_issue-portal.json')  # TODO
     
     
     # Responding to unhandled responses:
