@@ -69,7 +69,7 @@ def attachment_action_recived():
     if action == 'request':
         send_card(w_room_id, '011_request.json')
     elif action == 'issue':
-        send_card(w_room_id, '021_issue.json')   # TODO
+        send_card(w_room_id, '021_issue.json')
     
     # 01-Request Card responses: 
     elif action == 'request-software':
