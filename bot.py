@@ -14,6 +14,12 @@ or implied.
 
 from flask import Flask, request, jsonify
 from webexteamssdk import WebexTeamsAPI
+from webexteamssdk.models.cards.card import AdaptiveCard
+from webexteamssdk.models.cards.inputs import Text, Number
+from webexteamssdk.models.cards.container import ColumnSet, ActionSet
+from webexteamssdk.models.cards.components import TextBlock, Column, Image
+from webexteamssdk.models.cards.actions import Submit
+from webexteamssdk.utils import make_attachment
 import os
 import json
 
@@ -62,6 +68,11 @@ def attachment_action_recived():
 
     # Deleting the original message since a response has been recieved
     api.messages.delete(w_msg_id)
+
+    # Generating card
+    buttons_list = ['request-software','request-hardware','request-access']
+    g_card = generate_card(buttons_list)
+    api.messages.create(text="Issue sending message", toPersonEmail=w_room_id, attachments=[make_attachment(g_card)])
 
     # Handling cards' action buttons
 
@@ -116,6 +127,19 @@ def send_card(room_id,card_file):
             "content": get_json_card(card_file)
         }],
     )
+
+# Generating an Adaptive card with a list of buttons
+def generate_card(list_of_buttons):
+    c_image = Image(url="https://cdn4.iconfinder.com/data/icons/computer-technology-6/64/Error-computer-notice-warning-512.png", size="Medium", height="50px")
+    c_text_block = TextBlock("IT Services", color="Light",size="ExtraLarge")
+    col_1 = list()
+    col_1.append(c_image)
+    col_1.append(c_text_block)
+    
+    c_column_set_1 = ColumnSet(columns=col_1)
+    card = AdaptiveCard(body=c_column_set_1)
+    return card
+
 
 if __name__=="__main__":
     app.run()
