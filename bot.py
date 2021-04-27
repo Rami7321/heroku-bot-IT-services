@@ -111,13 +111,21 @@ def attachment_action_recived():
 
     # 01-Issue Card responses:
     elif action == 'issue-computer':
-        send_card(w_room_id, '022_issue-computer.json')  # TODO
+        send_card(w_room_id, '022_issue-computer.json')
     elif action == 'issue-oracle':
         send_card(w_room_id, '022_issue-oracle.json')  # TODO
     elif action == 'issue-network':
         send_card(w_room_id, '022_issue-network.json')  # TODO
     elif action == 'issue-portal':
         send_card(w_room_id, '022_issue-portal.json')  # TODO
+    
+    # 02- Issue 'Computer, Printer, Software' handling:
+    elif action == 'issue-computer-pc':
+        send_card(w_room_id, '0221_issue-computer-pc.json')
+    elif action == 'issue-computer-printing':
+        send_card(w_room_id, '0221_issue-computer-printing.json')
+    elif action == 'issue-computer-pc':
+        send_card(w_room_id, '0221_issue-computer-software.json')
     
     
     # Responding to unhandled responses:

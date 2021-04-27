@@ -12,7 +12,7 @@
                             "items": [
                                 {
                                     "type": "TextBlock",
-                                    "text": "Report an issue - Computer, Printer, Software",
+                                    "text": "Report an issue - Software",
                                     "color": "Light",
                                     "size": "medium",
                                     "spacing": "Padding"
@@ -53,31 +53,46 @@
         },
         {
             "type": "Container",
-            "separator": true,
+            "items": [
+                {
+                    "type": "Container",
+                    "items": [
+                        {
+                            "type": "Input.ChoiceSet",
+                            "id": "action",
+                            "placeholder": "Please choose...",
+                            "choices": [
+                                {
+                                    "title": "Microsoft",
+                                    "value": "issue-computer-software-Microsoft"
+                                },
+                                {
+                                    "title": "Cisco Jabber",
+                                    "value": "issue-computer-software-Cisco Jabber"
+                                },
+                                {
+                                    "title": "Photoshop",
+                                    "value": "issue-computer-software-Photoshop"
+                                },
+                                {
+                                    "title": "Other",
+                                    "value": "issue-computer-software-Other"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "Container",
             "items": [
                 {
                     "type": "ActionSet",
                     "actions": [
                         {
                             "type": "Action.Submit",
-                            "title": "PC/Laptop",
-                            "data": {
-                                "action": "issue-computer-pc"
-                            }
-                        },
-                        {
-                            "type": "Action.Submit",
-                            "title": "Printing & Scanning",
-                            "data": {
-                                "action": "issue-computer-printing"
-                            }
-                        },
-                        {
-                            "type": "Action.Submit",
-                            "title": "Software",
-                            "data": {
-                                "action": "issue-computer-software"
-                            }
+                            "title": "Submit"
                         }
                     ],
                     "spacing": "None"

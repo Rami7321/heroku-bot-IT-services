@@ -12,7 +12,7 @@
                             "items": [
                                 {
                                     "type": "TextBlock",
-                                    "text": "Report an issue - Computer, Printer, Software",
+                                    "text": "Report an issue - Printing",
                                     "color": "Light",
                                     "size": "medium",
                                     "spacing": "Padding"
@@ -53,31 +53,46 @@
         },
         {
             "type": "Container",
-            "separator": true,
+            "items": [
+                {
+                    "type": "Container",
+                    "items": [
+                        {
+                            "type": "Input.ChoiceSet",
+                            "id": "action",
+                            "placeholder": "Please choose...",
+                            "choices": [
+                                {
+                                    "title": "Printing issue",
+                                    "value": "issue-computer-printing-Printing issue"
+                                },
+                                {
+                                    "title": "Scanning issue",
+                                    "value": "issue-computer-printing-Scanning issue"
+                                },
+                                {
+                                    "title": "ID Reader",
+                                    "value": "issue-computer-printing-ID Reader"
+                                },
+                                {
+                                    "title": "Signature-Pad issue",
+                                    "value": "issue-computer-printing-Signature-Pad issue"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "Container",
             "items": [
                 {
                     "type": "ActionSet",
                     "actions": [
                         {
                             "type": "Action.Submit",
-                            "title": "PC/Laptop",
-                            "data": {
-                                "action": "issue-computer-pc"
-                            }
-                        },
-                        {
-                            "type": "Action.Submit",
-                            "title": "Printing & Scanning",
-                            "data": {
-                                "action": "issue-computer-printing"
-                            }
-                        },
-                        {
-                            "type": "Action.Submit",
-                            "title": "Software",
-                            "data": {
-                                "action": "issue-computer-software"
-                            }
+                            "title": "Submit"
                         }
                     ],
                     "spacing": "None"

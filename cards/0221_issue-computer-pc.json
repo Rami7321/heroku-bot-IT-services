@@ -12,9 +12,9 @@
                             "items": [
                                 {
                                     "type": "TextBlock",
-                                    "text": "Report an issue - Computer, Printer, Software",
+                                    "text": "Report an issue - Computer",
                                     "color": "Light",
-                                    "size": "medium",
+                                    "size":"medium",
                                     "spacing": "Padding"
                                 }
                             ]
@@ -53,31 +53,42 @@
         },
         {
             "type": "Container",
-            "separator": true,
+            "items": [
+                {
+                    "type": "Container",
+                    "items": [
+                        {
+                            "type": "Input.ChoiceSet",
+                            "id": "action",
+                            "placeholder": "Please choose...",
+                            "choices": [
+                                {
+                                    "title": "Desktop",
+                                    "value": "issue-computer-pc-Desktop"
+                                },
+                                {
+                                    "title": "Laptop",
+                                    "value": "issue-computer-pc-Laptop"
+                                },
+                                {
+                                    "title": "Projector",
+                                    "value": "issue-computer-pc-Projector"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "Container",
             "items": [
                 {
                     "type": "ActionSet",
                     "actions": [
                         {
                             "type": "Action.Submit",
-                            "title": "PC/Laptop",
-                            "data": {
-                                "action": "issue-computer-pc"
-                            }
-                        },
-                        {
-                            "type": "Action.Submit",
-                            "title": "Printing & Scanning",
-                            "data": {
-                                "action": "issue-computer-printing"
-                            }
-                        },
-                        {
-                            "type": "Action.Submit",
-                            "title": "Software",
-                            "data": {
-                                "action": "issue-computer-software"
-                            }
+                            "title": "Submit"
                         }
                     ],
                     "spacing": "None"
