@@ -16,7 +16,7 @@ from flask import Flask, request, jsonify
 from webexteamssdk import WebexTeamsAPI
 from webexteamssdk.models.cards.card import AdaptiveCard
 from webexteamssdk.models.cards.inputs import Text, Number
-from webexteamssdk.models.cards.container import ColumnSet, ActionSet
+from webexteamssdk.models.cards.container import ColumnSet
 from webexteamssdk.models.cards.components import TextBlock, Column, Image
 from webexteamssdk.models.cards.actions import Submit
 from webexteamssdk.utils import make_attachment
