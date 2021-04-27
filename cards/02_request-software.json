@@ -8,23 +8,11 @@
                     "type": "Column",
                     "items": [
                         {
-                            "type": "Image",
-                            "url": "https://cdn4.iconfinder.com/data/icons/computer-technology-6/64/Error-computer-notice-warning-512.png",
-                            "size": "Medium",
-                            "height": "50px"
-                        }
-                    ],
-                    "width": "auto"
-                },
-                {
-                    "type": "Column",
-                    "items": [
-                        {
                             "type": "Container",
                             "items": [
                                 {
                                     "type": "TextBlock",
-                                    "text": "IT Services",
+                                    "text": "New Request - Software",
                                     "color": "Light",
                                     "size": "ExtraLarge",
                                     "spacing": "Padding"
@@ -65,26 +53,58 @@
         },
         {
             "type": "Container",
-            "separator": true,
+            "items": [
+                {
+                    "type": "Container",
+                    "items": [
+                        {
+                            "type": "Input.ChoiceSet",
+                            "id": "action",
+                            "placeholder": "Please choose...",
+                            "choices": [
+                                {
+                                    "title": "MS Project",
+                                    "value": "request-software-MS Project"
+                                },
+                                {
+                                    "title": "MS Visio",
+                                    "value": "request-software-MS Visio"
+                                },
+                                {
+                                    "title": "SPSS",
+                                    "value": "request-software-SPSS"
+                                },
+                                {
+                                    "title": "Photoshop",
+                                    "value": "request-software-Photoshop"
+                                },
+                                {
+                                    "title": "Adobe Writer",
+                                    "value": "request-software-Adobe Writer"
+                                },
+                                {
+                                    "title": "Power PI",
+                                    "value": "request-software-Power PI"
+                                },
+                                {
+                                    "title": "Others",
+                                    "value": "request-software-Others"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "Container",
             "items": [
                 {
                     "type": "ActionSet",
                     "actions": [
                         {
                             "type": "Action.Submit",
-                            "title": "Submit a new request",
-                            "style": "positive",
-                            "data": {
-                                "action": "request"
-                            }
-                        },
-                        {
-                            "type": "Action.Submit",
-                            "title": "Report an issue",
-                            "style": "destructive",
-                            "data": {
-                                "action": "issue"
-                            }
+                            "title": "Submit"
                         }
                     ],
                     "spacing": "None"

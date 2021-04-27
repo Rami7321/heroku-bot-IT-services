@@ -53,46 +53,38 @@
         },
         {
             "type": "Container",
-            "items": [
-                {
-                    "type": "Container",
-                    "items": [
-                        {
-                            "type": "Input.ChoiceSet",
-                            "id": "action",
-                            "placeholder": "Please choose...",
-                            "choices": [
-                                {
-                                    "title": "Software request",
-                                    "value": "request-software"
-                                },
-                                {
-                                    "title": "Hardware request",
-                                    "value": "request-hardware"
-                                },
-                                {
-                                    "title": "Access request",
-                                    "value": "request-access"
-                                },
-                                {
-                                    "title": "Request accessories",
-                                    "value": "request-accessories"
-                                }
-                            ]
-                        }
-                    ]
-                }
-            ]
-        },
-        {
-            "type": "Container",
+            "separator": true,
             "items": [
                 {
                     "type": "ActionSet",
                     "actions": [
                         {
                             "type": "Action.Submit",
-                            "title": "Submit"
+                            "title": "Software request",
+                            "data": {
+                                "action": "request-software"
+                            }
+                        },
+                        {
+                            "type": "Action.Submit",
+                            "title": "Hardware request",
+                            "data": {
+                                "action": "request-hardware"
+                            }
+                        },
+                        {
+                            "type": "Action.Submit",
+                            "title": "Access request",
+                            "data": {
+                                "action": "request-access"
+                            }
+                        },
+                        {
+                            "type": "Action.Submit",
+                            "title": "Request accessories",
+                            "data": {
+                                "action": "request-accessories"
+                            }
                         }
                     ],
                     "spacing": "None"

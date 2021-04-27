@@ -72,14 +72,14 @@ def attachment_action_recived():
         send_card(w_room_id, '01_issue.json')   # TODO
     # 01-Request Card responses: 
     elif action == 'request-software':
-        send_card(w_room_id, '02_request-software.json') # TODO
+        send_card(w_room_id, '02_request-software.json')
     elif action == 'request-hardware':
         send_card(w_room_id, '02_request-hardware.json')  # TODO
     elif action == 'request-access':
         send_card(w_room_id, '02_request-access.json')  # TODO
     elif action == 'request-accessories':
         send_card(w_room_id, '02_request-accessories.json')  # TODO
-    # 02-Issue Card responses:
+    # 01-Issue Card responses:
     elif action == 'issue-computer':
         send_card(w_room_id, '02_issue-computer.json')  # TODO
     elif action == 'issue-oracle':
@@ -88,6 +88,12 @@ def attachment_action_recived():
         send_card(w_room_id, '02_issue-network.json')  # TODO
     elif action == 'issue-portal':
         send_card(w_room_id, '02_issue-portal.json')  # TODO
+    # 02- Request Software handling:
+    elif 'request-software-' in action:
+        software = action.replace('request-software-','')
+        message = "Your request for software: **" + software + "** has been recieved."
+        api.messages.create(roomId=w_room_id, markdown=message)
+        # send_card(w_room_id, '02_request-software.json')  # TODO
     # Responding to unhandled responses:
     else:
         message = "Your response: '" + action + "' was not recognized. Please try again.."
