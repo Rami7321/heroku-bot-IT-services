@@ -112,6 +112,13 @@ def attachment_action_recived():
         api.messages.create(roomId=w_room_id, markdown=message)
         send_card(w_room_id, '03_provide_information.json')  # TODO
 
+    # 02- Request Accessories handling:
+    elif 'request-accessories-' in action:
+        accessory = action.replace('request-accessories-', '')
+        message = "Your request for accessory: **" + accessory + "** has been recieved."
+        api.messages.create(roomId=w_room_id, markdown=message)
+        send_card(w_room_id, '03_provide_information.json')  # TODO
+
     # Responding to unhandled responses:
     else:
         message = "Your response: '" + action + "' was not recognized. Please try again.."
