@@ -137,10 +137,12 @@ def generate_card(list_of_buttons):
     c_text_block = TextBlock("IT Services", color="Light",size="ExtraLarge")
     col_1_content = list()
     col_1_content.append(c_image)
-    col_1_content.append(c_text_block)
+    col_2_content = list()
+    col_2_content.append(c_text_block)
     col_1 = Column(items=col_1_content)
+    col_2 = Column(items=col_2_content)
     
-    c_column_set_1 = ColumnSet(columns=col_1)
+    c_column_set_1 = ColumnSet(columns=[col_1,col_2])
     card = AdaptiveCard(body=c_column_set_1)
     return card
 
