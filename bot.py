@@ -127,6 +127,32 @@ def attachment_action_recived():
     elif action == 'issue-computer-software':
         send_card(w_room_id, '0221_issue-computer-software.json')
     
+    # TODO: 02- Issue 'Oracle / E-Business & Kronos' handling:
+    elif action == 'issue-oracle-employee':
+        send_card(w_room_id, '0222_issue-oracle-employee.json')
+    elif action == 'issue-oracle-iperform':
+        send_card(w_room_id, '0222_issue-oracle-iperform.json')
+    elif action == 'issue-oracle-kronos':
+        send_card(w_room_id, '0222_issue-oracle-kronos.json')
+
+    # TODO: 02- Issue 'Network services' handling:
+    elif action == 'issue-network-remote':
+        send_card(w_room_id, '0223_issue-network-remote.json')
+    elif action == 'issue-network-internet':
+        send_card(w_room_id, '0223_issue-network-internet.json')
+    elif action == 'issue-oracle-wifi':
+        send_card(w_room_id, '0223_issue-oracle-wifi.json')
+
+    # TODO: 02- Issue 'Portal, Website, Sharepoint, SMS' handling:
+    elif action == 'issue-portal-policy':
+        send_card(w_room_id, '0224_issue-portal-policy.json')
+    elif action == 'issue-portal-website':
+        send_card(w_room_id, '0224_issue-portal-website.json')
+    elif action == 'issue-portal-intranet':
+        send_card(w_room_id, '0224_issue-portal-intranet.json')
+    elif action == 'issue-portal-sms':
+        send_card(w_room_id, '0224_issue-portal-sms.json')
+
     # 03- Issue handling:
     elif 'issue-' in action:
         issue = action.replace('issue-', '')
