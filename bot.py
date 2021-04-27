@@ -14,12 +14,6 @@ or implied.
 
 from flask import Flask, request, jsonify
 from webexteamssdk import WebexTeamsAPI
-from webexteamssdk.models.cards.card import AdaptiveCard
-from webexteamssdk.models.cards.inputs import Text, Number
-from webexteamssdk.models.cards.container import ColumnSet
-from webexteamssdk.models.cards.components import TextBlock, Column, Image
-from webexteamssdk.models.cards.actions import Submit
-from webexteamssdk.utils import make_attachment
 import os
 import json
 
@@ -47,14 +41,6 @@ def initial_message_received():
         message = "Hi, I'm a Webex bot! I'm here to assist you with IT services.. 💻⚠ "
         api.messages.create(roomId=w_room_id, markdown=message)
         send_card(w_room_id,'00_init_card.json')
-
-        # TESTING Generating a card dynamically
-        # Generating card
-        buttons_list = ['request-software','request-hardware','request-access']
-        g_card = generate_card(buttons_list)
-        print("Card: " + str(g_card))
-        print("Card in JSON: " + str(g_card.to_json()))
-        api.messages.create(text="Issue sending message", roomId=w_room_id, attachments=[make_attachment(g_card)])
 
     return jsonify({'success': True})
 
@@ -130,21 +116,6 @@ def send_card(room_id,card_file):
             "content": get_json_card(card_file)
         }],
     )
-
-# Generating an Adaptive card with a list of buttons
-def generate_card(list_of_buttons):
-    c_image = Image(url="https://cdn4.iconfinder.com/data/icons/computer-technology-6/64/Error-computer-notice-warning-512.png", height="50px")
-    c_text_block = TextBlock("IT Services", color="Light",size="ExtraLarge")
-    col_1_content = list()
-    col_1_content.append(c_image)
-    col_2_content = list()
-    col_2_content.append(c_text_block)
-    col_1 = Column(items=col_1_content)
-    col_2 = Column(items=col_2_content)
-    
-    c_column_set_1 = ColumnSet(columns=[col_1,col_2])
-    card = AdaptiveCard(body=c_column_set_1)
-    return card
 
 
 if __name__=="__main__":
