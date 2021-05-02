@@ -68,7 +68,7 @@
                                 },
                                 {
                                     "title": "Remove Access",
-                                    "value": "request-hardware-Remove"
+                                    "value": "request-access-Remove"
                                 }
                             ]
                         }

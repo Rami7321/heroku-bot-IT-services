@@ -12,7 +12,7 @@
                             "items": [
                                 {
                                     "type": "TextBlock",
-                                    "text": "Report an issue - Computer",
+                                    "text": "Report an issue - PC/Laptop",
                                     "color": "Light",
                                     "size":"medium",
                                     "spacing": "Padding"

@@ -108,16 +108,6 @@ def attachment_action_recived():
         message = "Your request for *accessory*: **" + accessory + "** has been recieved."
         api.messages.create(roomId=w_room_id, markdown=message)
         send_card(w_room_id, '013_provide_information.json')  # TODO
-
-    # 01-Issue Card responses:
-    elif action == 'issue-computer':
-        send_card(w_room_id, '022_issue-computer.json')
-    elif action == 'issue-oracle':
-        send_card(w_room_id, '022_issue-oracle.json')  # TODO
-    elif action == 'issue-network':
-        send_card(w_room_id, '022_issue-network.json')  # TODO
-    elif action == 'issue-portal':
-        send_card(w_room_id, '022_issue-portal.json')  # TODO
     
     # 02- Issue 'Computer, Printer, Software' handling:
     elif action == 'issue-computer-pc':

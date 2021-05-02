@@ -59,17 +59,63 @@
                     "type": "ActionSet",
                     "actions": [
                         {
-                            "type": "Action.Submit",
+                            "type": "Action.ShowCard",
                             "title": "Computer, Printer, Software",
-                            "data": {
-                                "action": "issue-computer"
+                            "card": {
+                                "type":"AdaptiveCard",
+                                "actions": [
+                                    {
+                                        "type": "Action.Submit",
+                                        "title": "PC/Laptop",
+                                        "data": {
+                                            "action": "issue-computer-pc"
+                                        }
+                                    },
+                                    {
+                                        "type": "Action.Submit",
+                                        "title": "Printing & Scanning",
+                                        "data": {
+                                            "action": "issue-computer-printing"
+                                        }
+                                    },
+                                    {
+                                        "type": "Action.Submit",
+                                        "title": "Software",
+                                        "data": {
+                                            "action": "issue-computer-software"
+                                        }
+                                    }
+                                ]
                             }
                         },
                         {
-                            "type": "Action.Submit",
+                            "type": "Action.ShowCard",
                             "title": "Oracle / E-Business @ Kronos",
-                            "data": {
-                                "action": "issue-oracle"
+                            "card": {
+                                "type": "AdaptiveCard",
+                                "actions": [
+                                    {
+                                        "type": "Action.Submit",
+                                        "title": "Empolyee Self-Service",
+                                        "data": {
+                                            "action": "issue-oracle-employee"
+                                        }
+                                    },
+                                    {
+                                        "type": "Action.Submit",
+                                        "title": "iPreform",
+                                        "data": {
+                                            "action": "issue-oracle-iperform"
+                                        }
+                                    },
+                                    {
+                                        "type": "Action.Submit",
+                                        "title": "Kronos",
+                                        "data": {
+                                            "action": "issue-oracle-kronos"
+                                        }
+                                    }
+                                ]
                             }
                         },
                         {
