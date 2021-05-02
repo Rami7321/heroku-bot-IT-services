@@ -119,17 +119,70 @@
                             }
                         },
                         {
-                            "type": "Action.Submit",
+                            "type": "Action.ShowCard",
                             "title": "Network services",
-                            "data": {
-                                "action": "issue-network"
+                            "card": {
+                                "type": "AdaptiveCard",
+                                "actions": [
+                                    {
+                                        "type": "Action.Submit",
+                                        "title": "Remote Access",
+                                        "data": {
+                                            "action": "issue-network-remote"
+                                        }
+                                    },
+                                    {
+                                        "type": "Action.Submit",
+                                        "title": "Internet",
+                                        "data": {
+                                            "action": "issue-network-internet"
+                                        }
+                                    },
+                                    {
+                                        "type": "Action.Submit",
+                                        "title": "WiFi and other",
+                                        "data": {
+                                            "action": "issue-network-wifi"
+                                        }
+                                    }
+                                ]
                             }
                         },
                         {
-                            "type": "Action.Submit",
+                            "type": "Action.ShowCard",
                             "title": "Portal, Website, Sharepoint, SMS",
-                            "data": {
-                                "action": "issue-portal"
+                            "card": {
+                                "type": "AdaptiveCard",
+                                "actions": [
+                                    {
+                                        "type": "Action.Submit",
+                                        "title": "Policy Management",
+                                        "data": {
+                                            "action": "issue-portal-policy"
+                                        }
+                                    },
+                                    {
+                                        "type": "Action.Submit",
+                                        "title": "Website",
+                                        "data": {
+                                            "action": "issue-portal-website"
+                                        }
+                                    },
+                                    {
+                                        "type": "Action.Submit",
+                                        "title": "Intranet portal",
+                                        "data": {
+                                            "action": "issue-portal-intranet"
+                                        }
+                                    },
+                                    {
+                                        "type": "Action.Submit",
+                                        "title": "SMS Application",
+                                        "data": {
+                                            "action": "issue-portal-sms"
+                                        }
+                                    }
+                                ]
                             }
                         }
                     ],
