@@ -81,33 +81,13 @@ def attachment_action_recived():
     elif action == 'request-accessories':
         send_card(w_room_id, '012_request-accessories.json')
     
-    # 02- Request Software handling:
-    elif 'request-software-' in action:
-        software = action.replace('request-software-', '')
-        message = "Your request for *software*: **" + software + "** has been recieved."
+    # 02- Completed Request handling:
+    elif 'request-' in action:
+        request_type = action.replace('request-', '')
+        message = "Your request for : **" + request_type + "** has been recieved."
         api.messages.create(roomId=w_room_id, markdown=message)
         send_card(w_room_id, '013_provide_information.json')  # TODO
 
-    # 02- Request Hardware handling:
-    elif 'request-hardware-' in action:
-        hardware = action.replace('request-hardware-', '')
-        message = "Your request for *hardware*: **" + hardware + "** has been recieved."
-        api.messages.create(roomId=w_room_id, markdown=message)
-        send_card(w_room_id, '013_provide_information.json')  # TODO
-
-    # 02- Request Access handling:
-    elif 'request-access-' in action:
-        access_type = action.replace('request-access-', '')
-        message = "Your request for *access*: **" + access_type + "** has been recieved."
-        api.messages.create(roomId=w_room_id, markdown=message)
-        send_card(w_room_id, '013_provide_information.json')  # TODO
-
-    # 02- Request Accessories handling:
-    elif 'request-accessories-' in action:
-        accessory = action.replace('request-accessories-', '')
-        message = "Your request for *accessory*: **" + accessory + "** has been recieved."
-        api.messages.create(roomId=w_room_id, markdown=message)
-        send_card(w_room_id, '013_provide_information.json')  # TODO
     
     # 02- Issue 'Computer, Printer, Software' handling:
     elif action == 'issue-computer-pc':
@@ -117,7 +97,7 @@ def attachment_action_recived():
     elif action == 'issue-computer-software':
         send_card(w_room_id, '0221_issue-computer-software.json')
     
-    # TODO: 02- Issue 'Oracle / E-Business & Kronos' handling:
+    # 02- Issue 'Oracle / E-Business & Kronos' handling:
     elif action == 'issue-oracle-employee':
         send_card(w_room_id, '0222_issue-oracle-employee.json')
     elif action == 'issue-oracle-iperform':
@@ -143,7 +123,7 @@ def attachment_action_recived():
     elif action == 'issue-portal-sms':
         send_card(w_room_id, '0224_issue-portal-sms.json')
 
-    # 03- Issue handling:
+    # 03- Completed Issue handling:
     elif 'issue-' in action:
         issue = action.replace('issue-', '')
         message = "Your report for *issue*: **" + issue + "** has been recieved."
