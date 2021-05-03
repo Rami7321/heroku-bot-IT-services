@@ -56,93 +56,92 @@ def attachment_action_received():
     w_room_id = raw_json['data']['roomId']
     w_msg_id = raw_json['data']['messageId']
     
-    # Calling Webex API to get the attachment_action by id
-    attach_action = api.attachment_actions.get(raw_json['data']['id'])
-    
-    # Checking if the recieved card is an action, or userdata
-    if('action' in attach_action.inputs):
-        action = attach_action.inputs['action']
-    else:
-        print('No action was detected')
-
     # Deleting the original message since a response has been recieved
     api.messages.delete(w_msg_id)
 
-    # Handling cards' action buttons
-
-    # 00-Initial Card responses:
-    if action == 'request':
-        send_card(w_room_id, '011_request.json')
-    elif action == 'issue':
-        send_card(w_room_id, '021_issue.json')
+    # Calling Webex API to get the attachment_action by id
+    attach_action = api.attachment_actions.get(raw_json['data']['id'])
     
-    # 01-Request Card responses: 
-    elif action == 'request-software':
-        send_card(w_room_id, '012_request-software.json')
-    elif action == 'request-hardware':
-        send_card(w_room_id, '012_request-hardware.json')
-    elif action == 'request-access':
-        send_card(w_room_id, '012_request-access.json')
-    elif action == 'request-accessories':
-        send_card(w_room_id, '012_request-accessories.json')
-    
-    # 02- Completed Request handling:
-    elif 'request-' in action:
-        request_type = action.replace('request-', '')
-        message = "Your request for : **" + request_type + "** has been recieved."
-        api.messages.create(roomId=w_room_id, markdown=message)
-        send_card(w_room_id, '013_provide_information.json')
+    # Checking if the recieved card is an action, or userdata, or unknown
+    if('action' in attach_action.inputs):
+        action = attach_action.inputs['action']
 
-    elif 'submit-request' in action:
-        print()
+        # Handling cards' action buttons
+        # 00-Initial Card responses:
+        if action == 'request':
+            send_card(w_room_id, '011_request.json')
+        elif action == 'issue':
+            send_card(w_room_id, '021_issue.json')
+        
+        # 01-Request Card responses: 
+        elif action == 'request-software':
+            send_card(w_room_id, '012_request-software.json')
+        elif action == 'request-hardware':
+            send_card(w_room_id, '012_request-hardware.json')
+        elif action == 'request-access':
+            send_card(w_room_id, '012_request-access.json')
+        elif action == 'request-accessories':
+            send_card(w_room_id, '012_request-accessories.json')
+        
+        # 02- Completed Request handling:
+        elif 'request-' in action:
+            request_type = action.replace('request-', '')
+            message = "Your request for : **" + request_type + "** has been recieved."
+            api.messages.create(roomId=w_room_id, markdown=message)
+            send_card(w_room_id, '013_provide_information.json')
 
-    
-    # 02- Issue 'Computer, Printer, Software' handling:
-    elif action == 'issue-computer-pc':
-        send_card(w_room_id, '0221_issue-computer-pc.json')
-    elif action == 'issue-computer-printing':
-        send_card(w_room_id, '0221_issue-computer-printing.json')
-    elif action == 'issue-computer-software':
-        send_card(w_room_id, '0221_issue-computer-software.json')
-    
-    # 02- Issue 'Oracle / E-Business & Kronos' handling:
-    elif action == 'issue-oracle-employee':
-        send_card(w_room_id, '0222_issue-oracle-employee.json')
-    elif action == 'issue-oracle-iperform':
-        send_card(w_room_id, '0222_issue-oracle-iperform.json')
-    elif action == 'issue-oracle-kronos':
-        send_card(w_room_id, '0222_issue-oracle-kronos.json')
+        elif 'submit-request' in action:
+            print()
 
-    # 02- Issue 'Network services' handling:
-    elif action == 'issue-network-remote':
-        send_card(w_room_id, '0223_issue-network-remote.json')
-    elif action == 'issue-network-internet':
-        send_card(w_room_id, '0223_issue-network-internet.json')
-    elif action == 'issue-network-wifi':
-        send_card(w_room_id, '0223_issue-network-wifi.json')
+        
+        # 02- Issue 'Computer, Printer, Software' handling:
+        elif action == 'issue-computer-pc':
+            send_card(w_room_id, '0221_issue-computer-pc.json')
+        elif action == 'issue-computer-printing':
+            send_card(w_room_id, '0221_issue-computer-printing.json')
+        elif action == 'issue-computer-software':
+            send_card(w_room_id, '0221_issue-computer-software.json')
+        
+        # 02- Issue 'Oracle / E-Business & Kronos' handling:
+        elif action == 'issue-oracle-employee':
+            send_card(w_room_id, '0222_issue-oracle-employee.json')
+        elif action == 'issue-oracle-iperform':
+            send_card(w_room_id, '0222_issue-oracle-iperform.json')
+        elif action == 'issue-oracle-kronos':
+            send_card(w_room_id, '0222_issue-oracle-kronos.json')
 
-    # 02- Issue 'Portal, Website, Sharepoint, SMS' handling:
-    elif action == 'issue-portal-policy':
-        send_card(w_room_id, '0224_issue-portal-policy.json')
-    elif action == 'issue-portal-website':
-        send_card(w_room_id, '0224_issue-portal-website.json')
-    elif action == 'issue-portal-intranet':
-        send_card(w_room_id, '0224_issue-portal-intranet.json')
-    elif action == 'issue-portal-sms':
-        send_card(w_room_id, '0224_issue-portal-sms.json')
+        # 02- Issue 'Network services' handling:
+        elif action == 'issue-network-remote':
+            send_card(w_room_id, '0223_issue-network-remote.json')
+        elif action == 'issue-network-internet':
+            send_card(w_room_id, '0223_issue-network-internet.json')
+        elif action == 'issue-network-wifi':
+            send_card(w_room_id, '0223_issue-network-wifi.json')
 
-    # 03- Completed Issue handling:
-    elif 'issue-' in action:
-        issue = action.replace('issue-', '')
-        message = "Your report for *issue*: **" + issue + "** has been recieved."
-        api.messages.create(roomId=w_room_id, markdown=message)
-        send_card(w_room_id, '023_ask_to_login.json')  # TODO
-    
-    # Responding to unhandled responses:
+        # 02- Issue 'Portal, Website, Sharepoint, SMS' handling:
+        elif action == 'issue-portal-policy':
+            send_card(w_room_id, '0224_issue-portal-policy.json')
+        elif action == 'issue-portal-website':
+            send_card(w_room_id, '0224_issue-portal-website.json')
+        elif action == 'issue-portal-intranet':
+            send_card(w_room_id, '0224_issue-portal-intranet.json')
+        elif action == 'issue-portal-sms':
+            send_card(w_room_id, '0224_issue-portal-sms.json')
+
+        # 03- Completed Issue handling:
+        elif 'issue-' in action:
+            issue = action.replace('issue-', '')
+            message = "Your report for *issue*: **" + issue + "** has been recieved."
+            api.messages.create(roomId=w_room_id, markdown=message)
+            send_card(w_room_id, '023_ask_to_login.json')  # TODO
+        
+        # Responding to unhandled responses:
+        else:
+            message = "Your response: '" + action + "' was not recognized. Please try again.."
+            api.messages.create(roomId=w_room_id, markdown=message)
     else:
-        message = "Your response: '" + action + "' was not recognized. Please try again.."
-        api.messages.create(roomId=w_room_id, markdown=message)
-
+        print('No actions/inputs were detected. Please contact support')
+    
 
     return jsonify({'success': True})
 
