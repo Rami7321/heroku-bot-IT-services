@@ -90,7 +90,8 @@ def attachment_action_received():
         # 02- Completed Request handling:
         elif 'request-' in action:
             request_type = action.replace('request-', '')
-            service_summary['request'] = request_type
+            message = 'Your request for: ' + request_type + ' ...'
+            api.messages.create(roomId=w_room_id, markdown=message)
             send_card(w_room_id, '013_provide_information.json')
         
         # 02- Issue 'Computer, Printer, Software' handling:
@@ -130,8 +131,9 @@ def attachment_action_received():
         # 03- Completed Issue handling:
         elif 'issue-' in action:
             issue = action.replace('issue-', '')
+            last_step = True
             service_summary['issue'] = issue
-            message = "Your report for *issue*: **" + issue + "** has been recieved." + \
+            message = "Your report for *issue*: **" + issue + "** .." + \
                 "\nPlease login to the System and report an incedent by selecting the category of your issue"
             api.messages.create(roomId=w_room_id, markdown=message)
         
@@ -166,9 +168,11 @@ def attachment_action_received():
         message = 'No actions/inputs were detected. Please try again or contact support'
         api.messages.create(roomId=w_room_id, markdown=message)
 
+    # Displaying the summary to the user
     if(last_step):
-        message = 'Please login to the System and complete your request:'
-        message += '\nRequest summary: \n' + str(service_summary)
+        message += '\nRequest summary: '
+        for key in service_summary.keys():
+            message += key + '\n'
         api.messages.create(roomId=w_room_id, markdown=message)
 
     return jsonify({'success': True})
