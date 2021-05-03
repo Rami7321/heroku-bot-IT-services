@@ -50,8 +50,11 @@ def attachment_action_received():
     raw_json = request.get_json()
     print(raw_json)
 
-    # Customize the behaviour of the attachment action here
     service_summary = {}
+    last_step = False
+
+    # Customize the behaviour of the attachment action here
+    
 
     # Getting Room and Msg information
     w_room_id = raw_json['data']['roomId']
@@ -63,7 +66,7 @@ def attachment_action_received():
     # Calling Webex API to get the attachment_action by id
     attach_action = api.attachment_actions.get(raw_json['data']['id'])
     
-    # Checking if the recieved card is an action, or userdata, or unknown
+    # Checking if the recieved card is an action
     if('action' in attach_action.inputs):
         action = attach_action.inputs['action']
 
@@ -87,13 +90,8 @@ def attachment_action_received():
         # 02- Completed Request handling:
         elif 'request-' in action:
             request_type = action.replace('request-', '')
-            message = "Your request for : **" + request_type + "** has been recieved."
-            api.messages.create(roomId=w_room_id, markdown=message)
+            service_summary['request'] = request_type
             send_card(w_room_id, '013_provide_information.json')
-
-        elif 'submit-request' in action:
-            print()
-
         
         # 02- Issue 'Computer, Printer, Software' handling:
         elif action == 'issue-computer-pc':
@@ -132,22 +130,46 @@ def attachment_action_received():
         # 03- Completed Issue handling:
         elif 'issue-' in action:
             issue = action.replace('issue-', '')
-            message = "Your report for *issue*: **" + issue + "** has been recieved."
+            service_summary['issue'] = issue
+            message = "Your report for *issue*: **" + issue + "** has been recieved." + \
+                "\nPlease login to the System and report an incedent by selecting the category of your issue"
             api.messages.create(roomId=w_room_id, markdown=message)
-            send_card(w_room_id, '023_ask_to_login.json')  # TODO
         
         # Responding to unhandled responses:
         else:
             message = "Your response: '" + action + "' was not recognized. Please try again.."
             api.messages.create(roomId=w_room_id, markdown=message)
-    elif('userdata-location' in attach_action.inputs):
+
+    # Checking if the recieved card has userdata
+    if('userdata-location' in attach_action.inputs):
+        last_step = True
         service_summary['location'] = attach_action.inputs['userdata-location']
-    else:
+    if('userdata-email' in attach_action.inputs):
+        last_step = True
+        service_summary['email'] = attach_action.inputs['userdata-email']
+    if('userdata-phone' in attach_action.inputs):
+        last_step = True
+        service_summary['phone'] = attach_action.inputs['userdata-phone']
+    if('userdata-computer' in attach_action.inputs):
+        last_step = True
+        service_summary['computer'] = attach_action.inputs['userdata-computer']
+    if('userdata-shared_folder_name' in attach_action.inputs):
+        last_step = True
+        service_summary['shared_folder_name'] = attach_action.inputs['userdata-shared_folder_name']
+    if('userdata-shared_folder_path' in attach_action.inputs):
+        last_step = True
+        service_summary['shared_folder_path'] = attach_action.inputs['userdata-shared_folder_path']
+    if('userdata-comments' in attach_action.inputs):
+        last_step = True
+        service_summary['comments'] = attach_action.inputs['userdata-comments']
+    if(attach_action.inputs is None):
         message = 'No actions/inputs were detected. Please try again or contact support'
         api.messages.create(roomId=w_room_id, markdown=message)
 
-    message = 'Request summary: ' + str(service_summary)
-    api.messages.create(roomId=w_room_id, markdown=message)
+    if(last_step):
+        message = 'Please login to the System and complete your request:'
+        message += '\nRequest summary: \n' + str(service_summary)
+        api.messages.create(roomId=w_room_id, markdown=message)
 
     return jsonify({'success': True})
 
