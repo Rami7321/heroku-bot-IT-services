@@ -46,7 +46,7 @@ def initial_message_received():
 
 # Getting an attachment action, triggering the webhook for: attachmentActions:created
 @app.route('/attachment_action', methods=['POST'])
-def attachment_action_recived():
+def attachment_action_received():
     raw_json = request.get_json()
     print(raw_json)
 
@@ -105,7 +105,7 @@ def attachment_action_recived():
     elif action == 'issue-oracle-kronos':
         send_card(w_room_id, '0222_issue-oracle-kronos.json')
 
-    # TODO: 02- Issue 'Network services' handling:
+    # 02- Issue 'Network services' handling:
     elif action == 'issue-network-remote':
         send_card(w_room_id, '0223_issue-network-remote.json')
     elif action == 'issue-network-internet':
