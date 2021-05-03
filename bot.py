@@ -113,7 +113,7 @@ def attachment_action_received():
     elif action == 'issue-oracle-wifi':
         send_card(w_room_id, '0223_issue-oracle-wifi.json')
 
-    # TODO: 02- Issue 'Portal, Website, Sharepoint, SMS' handling:
+    # 02- Issue 'Portal, Website, Sharepoint, SMS' handling:
     elif action == 'issue-portal-policy':
         send_card(w_room_id, '0224_issue-portal-policy.json')
     elif action == 'issue-portal-website':
