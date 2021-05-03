@@ -60,7 +60,7 @@ def attachment_action_received():
     attach_action = api.attachment_actions.get(raw_json['data']['id'])
     
     # Checking if the recieved card is an action, or userdata
-    if(attach_action.inputs['action'] is not None):
+    if('action' in attach_action.inputs):
         action = attach_action.inputs['action']
     else:
         print('No action was detected')
