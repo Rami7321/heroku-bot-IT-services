@@ -51,7 +51,8 @@ def attachment_action_received():
     print(raw_json)
 
     # Customize the behaviour of the attachment action here
-    
+    service_summary = {}
+
     # Getting Room and Msg information
     w_room_id = raw_json['data']['roomId']
     w_msg_id = raw_json['data']['messageId']
@@ -139,9 +140,14 @@ def attachment_action_received():
         else:
             message = "Your response: '" + action + "' was not recognized. Please try again.."
             api.messages.create(roomId=w_room_id, markdown=message)
+    elif('userdata-location' in attach_action.inputs):
+        service_summary['location'] = attach_action.inputs['userdata-location']
     else:
-        print('No actions/inputs were detected. Please contact support')
-    
+        message = 'No actions/inputs were detected. Please try again or contact support'
+        api.messages.create(roomId=w_room_id, markdown=message)
+
+    message = 'Request summary: ' + str(service_summary)
+    api.messages.create(roomId=w_room_id, markdown=message)
 
     return jsonify({'success': True})
 
