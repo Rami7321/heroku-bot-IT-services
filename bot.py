@@ -56,9 +56,14 @@ def attachment_action_received():
     w_room_id = raw_json['data']['roomId']
     w_msg_id = raw_json['data']['messageId']
     
-    # Getting the attachment_action on the card
+    # Calling Webex API to get the attachment_action by id
     attach_action = api.attachment_actions.get(raw_json['data']['id'])
-    action = attach_action.inputs['action']
+    
+    # Checking if the recieved card is an action, or userdata
+    if(attach_action.inputs['action'] is not None):
+        action = attach_action.inputs['action']
+    else:
+        print('No action was detected')
 
     # Deleting the original message since a response has been recieved
     api.messages.delete(w_msg_id)
@@ -86,7 +91,10 @@ def attachment_action_received():
         request_type = action.replace('request-', '')
         message = "Your request for : **" + request_type + "** has been recieved."
         api.messages.create(roomId=w_room_id, markdown=message)
-        send_card(w_room_id, '013_provide_information.json')  # TODO
+        send_card(w_room_id, '013_provide_information.json')
+
+    elif 'submit-request' in action:
+        print()
 
     
     # 02- Issue 'Computer, Printer, Software' handling:
@@ -128,7 +136,7 @@ def attachment_action_received():
         issue = action.replace('issue-', '')
         message = "Your report for *issue*: **" + issue + "** has been recieved."
         api.messages.create(roomId=w_room_id, markdown=message)
-        send_card(w_room_id, '03_ask_to_login.json')  # TODO
+        send_card(w_room_id, '023_ask_to_login.json')  # TODO
     
     # Responding to unhandled responses:
     else:
