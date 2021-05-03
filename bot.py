@@ -164,6 +164,8 @@ def attachment_action_received():
     if('userdata-comments' in attach_action.inputs):
         last_step = True
         service_summary['comments'] = attach_action.inputs['userdata-comments']
+    
+    # If the card recieved is doesn't have actions or userdataa
     if(attach_action.inputs is None):
         message = 'No actions/inputs were detected. Please try again or contact support'
         api.messages.create(roomId=w_room_id, markdown=message)
@@ -173,7 +175,7 @@ def attachment_action_received():
         message = '\nRequest summary:\n'
         for key in service_summary.keys():
             if service_summary[key] != '':
-                message += '\t' + key + ': ' + service_summary[key] + '\n'
+                message += '  -' + key + ': ' + service_summary[key] + '\n'
         api.messages.create(roomId=w_room_id, markdown=message)
 
     return jsonify({'success': True})
