@@ -110,8 +110,8 @@ def attachment_action_received():
         send_card(w_room_id, '0223_issue-network-remote.json')
     elif action == 'issue-network-internet':
         send_card(w_room_id, '0223_issue-network-internet.json')
-    elif action == 'issue-oracle-wifi':
-        send_card(w_room_id, '0223_issue-oracle-wifi.json')
+    elif action == 'issue-network-wifi':
+        send_card(w_room_id, '0223_issue-network-wifi.json')
 
     # 02- Issue 'Portal, Website, Sharepoint, SMS' handling:
     elif action == 'issue-portal-policy':
