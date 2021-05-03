@@ -170,9 +170,9 @@ def attachment_action_received():
 
     # Displaying the summary to the user
     if(last_step):
-        message = '\nRequest summary: '
+        message = '\nRequest summary:\n'
         for key in service_summary.keys():
-            message += key + '\n'
+            message += key + ': ' + service_summary[key] + '\n'
         api.messages.create(roomId=w_room_id, markdown=message)
 
     return jsonify({'success': True})
