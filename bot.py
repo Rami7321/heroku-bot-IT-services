@@ -175,7 +175,7 @@ def attachment_action_received():
         message = '\nRequest summary:\n'
         for key in service_summary.keys():
             if service_summary[key] != '':
-                message += '  -' + key + ': ' + service_summary[key] + '\n'
+                message += '    - ' + key + ': ' + service_summary[key] + '\n'
         api.messages.create(roomId=w_room_id, markdown=message)
 
     return jsonify({'success': True})
